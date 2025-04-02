@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Sales Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            text-align: center;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 20px 0;
+            font-size: 28px;
+            font-weight: bold;
+            border-bottom: 2px solid #ffcc00;
+        }
+        .search-box {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+        .book-list {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        h2 {
+            color: #ffcc00;
+            width: 100%;
+            text-align: center;
+        }
+        .book-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: 0.3s;
+            width: 250px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .book-item:hover {
+            transform: scale(1.05);
+        }
+        .book-item img {
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .book-item img:hover {
+            transform: scale(1.1);
+        }
+        .book-details {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .buy-button, .pending-button {
+            padding: 10px 18px;
+            margin-top: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .buy-button {
+            background: #ffcc00;
+            color: black;
+            box-shadow: 0px 0px 10px rgba(255, 204, 0, 0.6);
+        }
+        .pending-button {
+            background: gray;
+            color: white;
+            cursor: not-allowed;
+            box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        📚 My Book Collection
+    </header>
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Search books..." onkeyup="filterBooks()">
+    </div>
+    <section id="book-list" class="book-list">
+        <script>
+            const books = {
+                "Coloring Books": [
+                    {title: "KIDS COLOURING BOOK: FUN WITH ANIMALS", img: "KIDS%20COLOURING%20BOOK%20FUN%20WITH%20.png", link: "B0F2B3J76Y"},
+                    {title: "Festival Fiesta!: Coloring Around the World", img: "Festival%20Fiesta!%20Coloring%20Around%20t.png", link: "B0F2Y9SB8H"},
+                    {title: "Animal Buddies at Work: Fun Coloring Adventure", img: "Animal%20Buddies%20at%20Work%20Fun%20Colorin.png", link: "B0F336V49D"},
+                    {title: "Space Explorers: Fun Coloring Adventure", img: "Space%20Explorers%20Fun%20Coloring%20Adven.png", link: "B0F37D98FH"},
+                    {title: "Dino Masti: A Fun Coloring Adventure", img: "Dino%20Masti%20A%20Fun%20Coloring%20Adventur.png", link: ""}
+                ],
+                "Story Books": [
+                    {title: "From Strangers to Memories", img: "From%20Strangers%20to%20Memories%20When%20Si.jpg", link: "B0F26DFGK3"},
+                    {title: "Magic Adventures Around the World", img: "Magic%20Adventures%20Around%20the%20World.jpg", link: "B0F2FQPBFX"},
+                    {title: "The Magic Box of Stories", img: "The%20Magic%20Box%20of%20Stories%20Inspiring.jpg", link: "B0F32JZ5Z2"}
+                ]
+            };
+            Object.keys(books).forEach(category => {
+                document.write(`<h2>${category}</h2>`);
+                books[category].forEach(book => {
+                    document.write(`
+                        <div class="book-item">
+                            <img src="https://raw.githubusercontent.com/Mayur992001/book/main/cover/${book.img}" alt="${book.title}">
+                            <div class="book-details">${book.title}</div>
+                            ${book.link ? `<a href="https://www.amazon.com/dp/${book.link}" class="buy-button" target="_blank">Buy Now</a>` : `<span class="pending-button">Pending</span>`}
+                        </div>
+                    `);
+                });
+            });
+        </script>
+    </section>
+</body>
+</html>
