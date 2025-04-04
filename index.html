@@ -1,151 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Sales Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-            color: white;
-            text-align: center;
-        }
-        header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 20px 0;
-            font-size: 28px;
-            font-weight: bold;
-            border-bottom: 2px solid #ffcc00;
-        }
-        .search-box {
-            margin: 20px auto;
-            width: 80%;
-            max-width: 400px;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            outline: none;
-        }
-        .book-list {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 30px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        h2 {
-            color: #ffcc00;
-            width: 100%;
-            text-align: center;
-        }
-        .book-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            transition: 0.3s;
-            width: 250px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        .book-item:hover {
-            transform: scale(1.05);
-        }
-        .book-item img {
-            width: 150px;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        .book-item img:hover {
-            transform: scale(1.1);
-        }
-        .book-details {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .buy-button, .pending-button {
-            padding: 10px 18px;
-            margin-top: 10px;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .buy-button {
-            background: #ffcc00;
-            color: black;
-            box-shadow: 0px 0px 10px rgba(255, 204, 0, 0.6);
-        }
-        .pending-button {
-            background: gray;
-            color: white;
-            cursor: not-allowed;
-            box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.6);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .container {
+      width: 95%;
+      max-width: 1200px;
+      margin: 20px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .controls input,
+    .controls select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    .book-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .book-item {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .book-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .book-item img {
+      width: 180px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.4s ease;
+    }
+
+    .book-item img:hover {
+      transform: scale(1.1);
+    }
+
+    .book-item h2 {
+      font-size: 1em;
+      color: #333;
+      margin: 10px 0 5px;
+    }
+
+    .format,
+    .category {
+      font-size: 0.9em;
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .category::before {
+      content: "📚 ";
+    }
+
+    .format::before {
+      content: "📘 ";
+    }
+
+    .rating {
+      color: #f5a623;
+      font-size: 1em;
+      margin: 5px 0;
+    }
+
+    .rating span {
+      color: #555;
+      font-size: 0.9em;
+      margin-left: 4px;
+    }
+
+    .book-item a {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #28a745;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1em;
+    }
+
+    .book-item a:hover {
+      background-color: #218838;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 500px) {
+      .book-item img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        📚 My Book Collection
-    </header>
-    <div class="search-box">
-        <input type="text" id="search" placeholder="Search books..." onkeyup="filterBooks()">
+
+<header>
+  <h1>Explore Our Books</h1>
+</header>
+
+<div class="container">
+
+  <!-- 🔍 Search & Filter -->
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search book name..." />
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="story">Story Books</option>
+      <option value="coloring">Coloring Books</option>
+    </select>
+    <select id="formatFilter">
+      <option value="all">All Formats</option>
+      <option value="ebook">Kindle eBook</option>
+      <option value="paperback">Paperback</option>
+      <option value="hardcover">Hardcover</option>
+    </select>
+  </div>
+
+  <!-- 📚 Book List -->
+  <div class="book-list" id="bookList">
+
+    <div class="book-item" data-title="From Strangers to Memories" data-category="story" data-format="ebook">
+      <img src="https://m.media-amazon.com/images/I/61RkSQtNtLL._SL1500_.jpg" />
+      <h2>From Strangers to Memories</h2>
+      <p class="category">Story Book</p>
+      <p class="format">Kindle eBook</p>
+      <div class="rating">⭐⭐⭐⭐☆ <span>(4.5/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F26DFGK3" target="_blank">Buy</a>
     </div>
-    <section id="book-list" class="book-list">
-        <script>
-            const books = {
-                "Coloring Books": [
-                    {title: "KIDS COLOURING BOOK: FUN WITH ANIMALS", img: "KIDS%20COLOURING%20BOOK%20FUN%20WITH%20.png", link: "B0F2B3J76Y"},
-                    {title: "Festival Fiesta!: Coloring Around the World", img: "Festival%20Fiesta!%20Coloring%20Around%20t.png", link: "B0F2Y9SB8H"},
-                    {title: "Animal Buddies at Work: Fun Coloring Adventure", img: "Animal%20Buddies%20at%20Work%20Fun%20Colorin.png", link: "B0F336V49D"},
-                    {title: "Space Explorers: Fun Coloring Adventure", img: "Space%20Explorers%20Fun%20Coloring%20Adven.png", link: "B0F37D98FH"},
-                    {title: "Dino Masti: A Fun Coloring Adventure", img: "Dino%20Masti%20A%20Fun%20Coloring%20Adventur.png", link: ""}
-                ],
-                "Story Books": [
-                    {title: "From Strangers to Memories", img: "From%20Strangers%20to%20Memories%20When%20Si.jpg", link: "B0F26DFGK3"},
-                    {title: "Magic Adventures Around the World", img: "Magic%20Adventures%20Around%20the%20World.jpg", link: "B0F2FQPBFX"},
-                    {title: "The Magic Box of Stories", img: "The%20Magic%20Box%20of%20Stories%20Inspiring.jpg", link: "B0F32JZ5Z2"}
-                ]
-            };
-            Object.keys(books).forEach(category => {
-                document.write(`<h2>${category}</h2>`);
-                books[category].forEach(book => {
-                    document.write(`
-                        <div class="book-item">
-                            <img src="https://raw.githubusercontent.com/Mayur992001/book/main/cover/${book.img}" alt="${book.title}">
-                            <div class="book-details">${book.title}</div>
-                            ${book.link ? `<a href="https://www.amazon.com/dp/${book.link}" class="buy-button" target="_blank">Buy Now</a>` : `<span class="pending-button">Pending</span>`}
-                        </div>
-                    `);
-                });
-            });
-        </script>
-    </section>
+
+    <div class="book-item" data-title="Kids Colouring Book" data-category="coloring" data-format="paperback">
+      <img src="https://m.media-amazon.com/images/I/61Y8tcS8DsL._SY385_.jpg" />
+      <h2>Kids Colouring Book</h2>
+      <p class="category">Coloring Book</p>
+      <p class="format">Paperback</p>
+      <div class="rating">⭐⭐⭐⭐ <span>(4/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F2B3J76Y" target="_blank">Buy</a>
+    </div>
+
+    <div class="book-item" data-title="Magic Adventures Around the World" data-category="story" data-format="ebook">
+      <img src="https://m.media-amazon.com/images/I/71rDG-JuE3L._SY385_.jpg" />
+      <h2>Magic Adventures Around the World</h2>
+      <p class="category">Story Book</p>
+      <p class="format">Kindle eBook</p>
+      <div class="rating">⭐⭐⭐⭐☆ <span>(4.3/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F2FQPBFX" target="_blank">Buy</a>
+    </div>
+
+    <div class="book-item" data-title="Festival Fiesta" data-category="coloring" data-format="paperback">
+      <img src="https://m.media-amazon.com/images/I/71DzyiDj7zL._SY385_.jpg" />
+      <h2>Festival Fiesta</h2>
+      <p class="category">Coloring Book</p>
+      <p class="format">Paperback</p>
+      <div class="rating">⭐⭐⭐⭐ <span>(4/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F2Y9SB8H" target="_blank">Buy</a>
+    </div>
+
+    <div class="book-item" data-title="Animal Buddies at Work" data-category="coloring" data-format="paperback">
+      <img src="https://m.media-amazon.com/images/I/61d29thB9-L._SY385_.jpg" />
+      <h2>Animal Buddies at Work</h2>
+      <p class="category">Coloring Book</p>
+      <p class="format">Paperback</p>
+      <div class="rating">⭐⭐⭐⭐ <span>(4/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F336V49D" target="_blank">Buy</a>
+    </div>
+
+    <div class="book-item" data-title="Space Explorers" data-category="coloring" data-format="paperback">
+      <img src="https://m.media-amazon.com/images/I/61uPl9wBviL._SY385_.jpg" />
+      <h2>Space Explorers</h2>
+      <p class="category">Coloring Book</p>
+      <p class="format">Paperback</p>
+      <div class="rating">⭐⭐⭐⭐ <span>(4.2/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F37D98FH" target="_blank">Buy</a>
+    </div>
+
+    <div class="book-item" data-title="The Magic Box of Stories" data-category="story" data-format="ebook">
+      <img src="https://m.media-amazon.com/images/I/61P6M4Q4aTL._SY385_.jpg" />
+      <h2>The Magic Box of Stories</h2>
+      <p class="category">Story Book</p>
+      <p class="format">Kindle eBook</p>
+      <div class="rating">⭐⭐⭐⭐☆ <span>(4.4/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F32JZ5Z2" target="_blank">Buy</a>
+    </div>
+
+    <div class="book-item" data-title="Dino Masti" data-category="coloring" data-format="paperback">
+      <img src="https://m.media-amazon.com/images/I/7165ifnpYJL._SL1293_.jpg" />
+      <h2>Dino Masti</h2>
+      <p class="category">Coloring Book</p>
+      <p class="format">Paperback</p>
+      <div class="rating">⭐⭐⭐⭐☆ <span>(4.6/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F3N7CLDK" target="_blank">Buy</a>
+    </div>
+
+    <div class="book-item" data-title="Wonder Tales for Little Dreamers" data-category="story" data-format="ebook">
+      <img src="https://m.media-amazon.com/images/I/71pMNnYPQ5L._SY385_.jpg" />
+      <h2>Wonder Tales for Little Dreamers</h2>
+      <p class="category">Story Book</p>
+      <p class="format">Kindle eBook</p>
+      <div class="rating">⭐⭐⭐⭐ <span>(4.1/5)</span></div>
+      <a href="https://www.amazon.com/dp/B0F3HSXZCH" target="_blank">Buy</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- JavaScript for search and filter -->
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const categoryFilter = document.getElementById("categoryFilter");
+  const formatFilter = document.getElementById("formatFilter");
+  const books = document.querySelectorAll(".book-item");
+
+  function filterBooks() {
+    const searchText = searchInput.value.toLowerCase();
+    const selectedCategory = categoryFilter.value;
+    const selectedFormat = formatFilter.value;
+
+    books.forEach(book => {
+      const title = book.getAttribute("data-title").toLowerCase();
+      const category = book.getAttribute("data-category");
+      const format = book.getAttribute("data-format");
+
+      const matchesSearch = title.includes(searchText);
+      const matchesCategory = selectedCategory === "all" || category === selectedCategory;
+      const matchesFormat = selectedFormat === "all" || format === selectedFormat;
+
+      if (matchesSearch && matchesCategory && matchesFormat) {
+        book.classList.remove("hidden");
+      } else {
+        book.classList.add("hidden");
+      }
+    });
+  }
+
+  searchInput.addEventListener("input", filterBooks);
+  categoryFilter.addEventListener("change", filterBooks);
+  formatFilter.addEventListener("change", filterBooks);
+</script>
+
 </body>
 </html>
